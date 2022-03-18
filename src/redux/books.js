@@ -6,5 +6,14 @@ export const bookSlice = createSlice({
     books: [],
     loading: false,
   },
-  reducers: {},
+  reducers: {
+    fetchBooks: (state, action) => {
+      state.books = [...state.books, ...action.payload];
+      //   state.loading = false;
+    },
+  },
 });
+
+export const { fetchBooks } = bookSlice.actions;
+
+export default bookSlice.reducer;
