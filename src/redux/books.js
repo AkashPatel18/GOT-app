@@ -1,19 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const getBooks = createAsyncThunk("books/getBooks", async () => {
+  const { data } = await axios.get(
+    "https://www.anapioficeandfire.com/api/books"
+  );
+
+  return data;
+});
 
 export const bookSlice = createSlice({
   name: "books",
   initialState: {
     books: [],
     loading: false,
+    error: false,
   },
-  reducers: {
-    fetchBooks: (state, action) => {
-      state.books = [...state.books, ...action.payload];
-      //   state.loading = false;
+
+  extraReducers: {
+    [getBooks.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getBooks.fulfilled]: (state, { payload }) => {
+      console.warn(payload, "hey");
+      state.books = payload;
+      state.loading = false;
+    },
+    [getBooks.rejected]: (state, { payload }) => {
+      state.error = true;
     },
   },
 });
-
-export const { fetchBooks } = bookSlice.actions;
 
 export default bookSlice.reducer;
