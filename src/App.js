@@ -5,6 +5,7 @@ import { getBooks } from "./redux/books";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./screens/Landing";
 import Books from "./screens/Books";
+import Header from "./components/Header";
 
 function App() {
   const { books } = useSelector((state) => state.books);
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Landing />}></Route>
         <Route path="/books" element={<Books />}></Route>

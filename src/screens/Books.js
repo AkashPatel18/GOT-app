@@ -4,6 +4,8 @@ import { Container } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooks } from "./../redux/books";
 import Book from "../components/Book";
+import { List, Stack } from "@mui/material";
+import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 
 export default function Books() {
   const dispatch = useDispatch();
@@ -14,11 +16,37 @@ export default function Books() {
     dispatch(getBooks());
   }, []);
 
+  function LeftArrow() {
+    const { isFirstItemVisible, scrollPrev } =
+      React.useContext(VisibilityContext);
+
+    return (
+      // <Arrow disabled={isFirstItemVisible} onClick={() => scrollPrev()}>
+      <p>Left</p>
+      // </Arrow>
+    );
+  }
+
+  function RightArrow() {
+    const { isLastItemVisible, scrollNext } =
+      React.useContext(VisibilityContext);
+
+    return (
+      // <Arrow disabled={isLastItemVisible} onClick={() => scrollNext()}>
+      <p>Right</p>
+      // </Arrow>
+    );
+  }
+
+  const onWheel = (e, api) => {};
+
   return (
     <Container>
-      {books.map((book) => {
-        return <Book item={book} />;
-      })}
+      <ScrollMenu onWheel={(ev, api) => {}}>
+        {books.map((book) => {
+          return <Book item={book} />;
+        })}
+      </ScrollMenu>
     </Container>
   );
 }
