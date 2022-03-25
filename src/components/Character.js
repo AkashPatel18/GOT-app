@@ -1,6 +1,7 @@
 import React from "react";
 
-const Book = ({ item }) => {
+const Character = ({ character }) => {
+  console.log(character);
   return (
     <div
       style={{
@@ -25,14 +26,13 @@ const Book = ({ item }) => {
           },
         }}
       >
-        <h4 style={{ fontSize: "30px" }}>{item.name}</h4>
-        <hr style={{ color: "red" }} />
-        <p>🖊️Author : {item.authors[0]}</p>
-        <p> 🏳️Country : {item.country} </p>
-        <p>Released : {item.released.slice(0, 10)}</p>
+        <p>{character.aliases}</p>
+        <p>Cultre : {character.culture}</p>
+        <p>Died : {character.died}</p>
+        <p>Gender : {character.gender}</p>
       </div>
     </div>
   );
 };
 
-export default Book;
+export default Character;

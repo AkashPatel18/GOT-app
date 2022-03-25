@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getBooks = createAsyncThunk("books/getBooks", async () => {
   const { data } = await axios.get(
-    "https://www.anapioficeandfire.com/api/books"
+    "https://www.anapioficeandfire.com/api/books?page=1&pageSize=12"
   );
 
   return data;
@@ -22,7 +22,6 @@ export const bookSlice = createSlice({
       state.loading = true;
     },
     [getBooks.fulfilled]: (state, { payload }) => {
-      console.warn(payload, "hey");
       state.books = payload;
       state.loading = false;
     },

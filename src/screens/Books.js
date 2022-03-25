@@ -7,7 +7,7 @@ import Book from "../components/Book";
 import { List, Stack } from "@mui/material";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 
-export default function Books() {
+export default function Books({ search }) {
   const dispatch = useDispatch();
 
   const { books } = useSelector((state) => state.books);
@@ -43,9 +43,13 @@ export default function Books() {
   return (
     <Container>
       <ScrollMenu onWheel={(ev, api) => {}}>
-        {books.map((book) => {
-          return <Book item={book} />;
-        })}
+        {books
+          .filter((book) =>
+            book.name.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((book) => {
+            return <Book item={book} />;
+          })}
       </ScrollMenu>
     </Container>
   );

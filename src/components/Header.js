@@ -1,19 +1,23 @@
 import React from "react";
+import { Input } from "@mui/material";
 
-const Header = ({ headerName }) => {
+const Header = ({ setSearch }) => {
   return (
     <div>
-      <SearchBar
-        value={searchItem}
-        onChange={(value) => {
-          setSearchItem(value);
-        }}
-        onRequestSearch={() => console.log("onRequestSearch")}
+      <div
         style={{
-          margin: "0 auto",
-          maxWidth: 800,
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "30px",
         }}
-      />
+      >
+        <Input
+          type={"search"}
+          onChange={(e) => setSearch(e.target.value)}
+          label="hi"
+          placeholder="🔍 search"
+        />
+      </div>
     </div>
   );
 };
