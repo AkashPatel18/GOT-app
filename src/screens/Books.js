@@ -16,33 +16,9 @@ export default function Books({ search }) {
     dispatch(getBooks());
   }, []);
 
-  function LeftArrow() {
-    const { isFirstItemVisible, scrollPrev } =
-      React.useContext(VisibilityContext);
-
-    return (
-      // <Arrow disabled={isFirstItemVisible} onClick={() => scrollPrev()}>
-      <p>Left</p>
-      // </Arrow>
-    );
-  }
-
-  function RightArrow() {
-    const { isLastItemVisible, scrollNext } =
-      React.useContext(VisibilityContext);
-
-    return (
-      // <Arrow disabled={isLastItemVisible} onClick={() => scrollNext()}>
-      <p>Right</p>
-      // </Arrow>
-    );
-  }
-
-  const onWheel = (e, api) => {};
-
   return (
     <Container>
-      <ScrollMenu onWheel={(ev, api) => {}}>
+      <ScrollMenu>
         {books
           .filter((book) =>
             book.name.toLowerCase().includes(search.toLowerCase())

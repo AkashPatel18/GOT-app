@@ -2,6 +2,7 @@ import React from "react";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import { Container } from "@mui/material";
 import { gethouses } from "./../redux/houses";
+import House from "./../components/House";
 
 const Houses = ({ search }) => {
   const dispatch = useDispatch();
@@ -16,11 +17,11 @@ const Houses = ({ search }) => {
     <Container>
       <ScrollMenu onWheel={(ev, api) => {}}>
         {houses
-          .filter((book) =>
+          .filter((house) =>
             book.name.toLowerCase().includes(search.toLowerCase())
           )
-          .map((book) => {
-            return <Book item={book} />;
+          .map((house) => {
+            return <House house={house} />;
           })}
       </ScrollMenu>
     </Container>
